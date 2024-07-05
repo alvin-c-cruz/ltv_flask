@@ -8,10 +8,7 @@
         <ul class="navbar-nav">
 
           {% if current_user.is_active %}
-          {% include "raw_material/navbar.html" %}
-          {% include "purchase_order/navbar.html" %}
 
-          {% include "vendor/navbar.html" %}
             
             <!-- Options -->
             <li class="nav-item dropdown">
@@ -19,7 +16,6 @@
                 Options
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {% include 'measure/navbar.html' %}    
                   {% if current_user.admin %}
                   <li class="nav-item">
                       <a class="dropdown-item" href="{{ url_for('user.user_list') }}">User Register</a>
