@@ -1,12 +1,14 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, Response, g
 import json
 from sqlalchemy.exc import IntegrityError
-from .models import Bank as Obj
-from .models import AdminBank as Approver
+from .models import BankAccount as Obj
+from .models import AdminBankAccount as Approver
 from .forms import Form
 from application.extensions import db
 from application.blueprints.user import login_required, roles_accepted
 from flask_login import current_user
+from .. bank import Bank
+
 
 from . import app_name, app_label
 
@@ -51,6 +53,7 @@ def add():
 
     context = {
         "form": form,
+        "bank_options": Bank().options()
     }
 
     return render_template(f"{app_name}/form.html", **context)

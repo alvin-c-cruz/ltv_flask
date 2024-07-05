@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% from "macros_simple_form.html" import text_box, select_box, save_button %}
+
+{% block title %}Bank Account{% endblock %}
+
+{% block content %}
+<div class="container p-5">
+    {% if form.id %}
+    <h1 class="mb-4">Edit Bank Account</h1>
+    <form action="{{ url_for('bank_account.edit', record_id=form.id) }}" method="post">
+        <input type="number" name="bank_account_id" value="{{ form.id }}" hidden>
+        {% else %}
+    <h1 class="mb-4">Add Bank</h1>
+    <form action="{{ url_for('bank_account.add') }}" method="post">
+        {% endif %}
+    
+        {{ text_box(form, "Account Name", "bank_account_name", form.bank_account_name, autofocus=True) }}
+        {{ text_box(form, "Account Short Name", "short_name", form.short_name, autofocus=False) }}
+        {{ text_box(form, "Account Code", "account_code", form.account_code, autofocus=False) }}
+        {{ select_box(form, "Bank", "bank_id", form.bank_id, bank_options, autofocus=False) }}
+        {{ text_box(form, "Order", "priority", form.priority, autofocus=False) }}
+        {{  save_button() }}
+
+    </form>
+</div>
+{% endblock %}

@@ -5,6 +5,7 @@
   </a>
   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
     <li><a class="dropdown-item" href="{{ url_for('bank.home') }}">Bank List</a></li>
+    {% include 'bank_account/navbar.html' %}
   </ul>
 </li>
 {% endif %}

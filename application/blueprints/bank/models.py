@@ -22,6 +22,14 @@ class Bank(db.Model):
         admin_approve = AdminBank.query.filter(AdminBank.bank_id==self.id).first()
         return admin_approve
 
+    def options(self):
+        _options = [
+            {"id": row.id, "dropdown_name": row.bank_name}
+            for row in Bank.query.order_by('bank_name').all()
+            if row.active
+        ]
+        return _options
+
 
 class UserBank(db.Model):
     bank_id = db.Column(db.Integer, db.ForeignKey('bank.id'), primary_key=True)
